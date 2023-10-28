@@ -100,8 +100,95 @@ console.log(truncateString("A-tisket a-tasket A green and yellow basket", 8));
 
 //Finder Keepers
 function findElement(arr, func) {
-  let num = 0;
-  return num;
+  return arr.find((p) => func(p) == true);
 }
 
-findElement([1, 2, 3, 4], (num) => num % 2 === 0);
+console.log(findElement([1, 2, 3, 4], (num) => num % 2 === 0));
+
+//Boo who
+function booWho(bool) {
+  if (bool === true || bool === false) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+console.log(booWho(1));
+
+//Title Case a Sentence
+function titleCase(str) {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map((w) => w.replace(w[0], w[0].toUpperCase()))
+    .join(" ");
+}
+
+console.log(titleCase("I'm a little tea pot"));
+
+//Slice and Splice
+function frankenSplice(arr1, arr2, n) {
+  let temp = arr2.slice();
+  let first = temp.slice(0, n);
+  let second = temp.splice(n);
+  return first.concat(arr1, second);
+}
+
+console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1));
+
+//Falsy Bouncer
+function bouncer(arr) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i]) {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+}
+
+console.log(bouncer([7, "ate", "", false, 9]));
+
+//Where do I Belong
+function getIndexToIns(arr, num) {
+  return arr
+    .concat(num)
+    .sort((a, b) => (a > b ? 1 : -1))
+    .findIndex((e) => e == num);
+}
+
+console.log(getIndexToIns([40, 60], 50));
+
+//Mutations
+function mutation(arr) {
+  let result = [];
+  let position1 = arr[0].toLowerCase().split("");
+  let position2 = arr[1].toLowerCase().split("");
+
+  for (let i = 0; i < position2.length; i++) {
+    let temp = position1.indexOf(position2[i]);
+    result.push(temp);
+  }
+  if (result.includes(-1)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+console.log(mutation(["hello", "hey"]));
+
+//Chunky Monkey
+function chunkArrayInGroups(arr = [], size) {
+  const newArr = [];
+  for (let i = 0; i < arr.length; i += size) {
+    console.log(arr[i]);
+    let temp = arr.slice(i, i + size);
+    console.log(temp);
+    newArr.push(temp);
+  }
+  return newArr;
+}
+
+console.log(chunkArrayInGroups(["a", "b", "c", "d"], 2));
